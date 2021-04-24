@@ -11,20 +11,20 @@ from tensorflow.keras import layers
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-print("Train:","x=",x_train.shape,"y=",y_train.shape)
-print("Test:","x=",x_test.shape,"y=",y_test.shape)
+#print("Train:","x=",x_train.shape,"y=",y_train.shape)
+#print("Test:","x=",x_test.shape,"y=",y_test.shape)
 
 x_train = x_train.astype('float')/255.
 x_test = x_test.astype('float')/255.
 
-plt.figure(figsize=(20,2))
-for i in range(10):
-        plt.subplot(1,10,i+1)
-        plt.imshow(x_train[i], cmap='binary')
-        plt.xticks([])
-        plt.yticks([])
+#plt.figure(figsize=(20,2))
+#for i in range(10):
+#       plt.subplot(1,10,i+1)
+#        plt.imshow(x_train[i], cmap='binary')
+#        plt.xticks([])
+#        plt.yticks([])
        
-        plt.xlabel(y_train[i])
+#        plt.xlabel(y_train[i])
 
 x_train = x_train.reshape((x_train.shape[0], 28, 28, 1))
 x_test = x_test.reshape((x_test.shape[0], 28, 28, 1))
@@ -35,13 +35,13 @@ model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 
-model.summary()
+#model.summary()
 
 model.add(layers.Flatten())
 model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(10, activation='softmax'))
 
-model.summary()
+#model.summary()
 
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -52,7 +52,7 @@ history = model.fit(x_train, y_train, epochs=10,
 
 
 model.save('my_model_digits.h5')
-print("Saved model to disk")
+#print("Saved model to disk")
 
 
 from tensorflow.keras.models import load_model
